@@ -17,4 +17,27 @@ class Course extends Model
             $data->save();
         });
     }
+
+    public function Course_job_works(){
+         
+      return $this->hasMany(CourseJobWorks::class, 'course_id');
+    }
+
+    public function Course_modules(){
+         
+        return $this->hasMany(CourseModul::class, 'course_id');
+      }
+
+      public function Course_module_task_complite_by_user(){
+         
+        return $this->hasMany(CourseModulTaskCompleteByUsers::class, 'course_id');
+      }
+
+      public function Course_instactor(){
+         
+        return $this->hasMany(CourseInstructors::class, 'course_id');
+      }
+
+
+
 }
