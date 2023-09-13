@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class ContactMessageSeeder extends Seeder
 {
-    /**
+    /**jgh
      * Run the database seeds.
      *
      * @return void
