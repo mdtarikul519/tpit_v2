@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Course;
 
 use Illuminate\Database\Seeder;
 
-class Course/CourseCategorySeeder extends Seeder
+class CourseCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
