@@ -13,6 +13,11 @@ class CourseYouWillLearnsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CourseModulAtAGlances::truncate();
+        CourseModulAtAGlances::create([
+            'course_id' => 1,
+            'title' => 'ইন্টার্নশিপ সুযোগ',
+        ]);
+
     }
 }
