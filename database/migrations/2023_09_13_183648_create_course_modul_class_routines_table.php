@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseCategoriesTable extends Migration
+class CreateCourseModulClassRoutinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateCourseCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_categories', function (Blueprint $table) {
+        Schema::create('course_modul_class_routines', function (Blueprint $table) {
             $table->id();
-            $table->string("title", 200)->nullable();
-            $table->string("image", 100)->nullable();
+            $table->bigInteger("module_id")->unsigned()->nullable();
+            $table->bigInteger("class_id")->unsigned()->nullable();
+            $table->date("date")->nullable();
+            $table->time("time")->nullable();
+            $table->text("topic")->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');
-            $table->timestamps();
-        });
-
-        Schema::create('course_course_category', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('course_category_id')->nullable();
-            $table->bigInteger('course_id')->nullable();
             $table->timestamps();
         });
     }
@@ -38,8 +34,6 @@ class CreateCourseCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_categories');
-        Schema::dropIfExists('course_course_category');
-
+        Schema::dropIfExists('course_modul_class_routines');
     }
 }
