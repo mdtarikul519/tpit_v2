@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseModulClassQuizesTable extends Migration
+class CreateCourseModuleClassRoutinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateCourseModulClassQuizesTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_modul_class_quizes', function (Blueprint $table) {
+        Schema::create('course_module_class_routines', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("course_id")->unsigned()->nullable();
-            $table->bigInteger("course_module_class_id")->unsigned()->nullable();
-            $table->bigInteger("quiz_id")->unsigned()->nullable();
+            $table->bigInteger("module_id")->unsigned()->nullable();
+            $table->bigInteger("class_id")->unsigned()->nullable();
+            $table->date("date")->nullable();
+            $table->time("time")->nullable();
+            $table->text("topic")->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');
@@ -32,6 +35,6 @@ class CreateCourseModulClassQuizesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_modul_class_quizes');
+        Schema::dropIfExists('course_module_class_routines');
     }
 }

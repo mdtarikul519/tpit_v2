@@ -79,8 +79,21 @@ Route::group(
                 Route::post('/bulk-import', 'Admin\ContactMessageController@bulk_import');
                 Route::get('/{id}', 'Admin\ContactMessageController@show');
             });
+        });
 
+        Route::group( ['prefix'=>'','middleware'=>['guest:api'] ],function(){
             Route::group( ['prefix'=>'course'],function(){
+
+                Route::get('/all', 'Course\CourseController@all');
+                Route::post('/store', 'Course\CourseController@store');
+                Route::post('/canvas-store', 'Course\CourseController@canvas_store');
+                Route::post('/update', 'Course\CourseController@update');
+                Route::post('/canvas-update', 'Course\CourseController@canvas_update');
+                Route::post('/soft-delete', 'Course\CourseController@soft_delete');
+                Route::post('/destroy', 'Course\CourseController@destroy');
+                Route::post('/restore', 'Course\CourseController@restore');
+                Route::post('/bulk-import', 'Course\CourseController@bulk_import');
+                Route::get('/{id}', 'Course\CourseController@show');
 
                 Route::group(['prefix' => 'course-category'], function () {
                     Route::get('/all', 'Course\CourseCategoryController@all');
@@ -95,21 +108,33 @@ Route::group(
                     Route::get('/{id}', 'Course\CourseCategoryController@show');
                 });
 
-                Route::group(['prefix' => 'course'], function () {
-                    Route::get('/all', 'Course\CourseController@all');
-                    Route::post('/store', 'Course\CourseController@store');
-                    Route::post('/canvas-store', 'Course\CourseController@canvas_store');
-                    Route::post('/update', 'Course\CourseController@update');
-                    Route::post('/canvas-update', 'Course\CourseController@canvas_update');
-                    Route::post('/soft-delete', 'Course\CourseController@soft_delete');
-                    Route::post('/destroy', 'Course\CourseController@destroy');
-                    Route::post('/restore', 'Course\CourseController@restore');
-                    Route::post('/bulk-import', 'Course\CourseController@bulk_import');
-                    Route::get('/{id}', 'Course\CourseController@show');
+                Route::group(['prefix' => 'course-category'], function () {
+                    Route::get('/all', 'Course\CourseCategoryController@all');
+                    Route::post('/store', 'Course\CourseCategoryController@store');
+                    Route::post('/canvas-store', 'Course\CourseCategoryController@canvas_store');
+                    Route::post('/update', 'Course\CourseCategoryController@update');
+                    Route::post('/canvas-update', 'Course\CourseCategoryController@canvas_update');
+                    Route::post('/soft-delete', 'Course\CourseCategoryController@soft_delete');
+                    Route::post('/destroy', 'Course\CourseCategoryController@destroy');
+                    Route::post('/restore', 'Course\CourseCategoryController@restore');
+                    Route::post('/bulk-import', 'Course\CourseCategoryController@bulk_import');
+                    Route::get('/{id}', 'Course\CourseCategoryController@show');
+                });
+
+                Route::group(['prefix' => 'course-instructor'], function () {
+                    Route::get('/all', 'Course\CourseInstructorController@all');
+                    Route::post('/store', 'Course\CourseInstructorController@store');
+                    Route::post('/canvas-store', 'Course\CourseInstructorController@canvas_store');
+                    Route::post('/update', 'Course\CourseInstructorController@update');
+                    Route::post('/canvas-update', 'Course\CourseInstructorController@canvas_update');
+                    Route::post('/soft-delete', 'Course\CourseInstructorController@soft_delete');
+                    Route::post('/destroy', 'Course\CourseInstructorController@destroy');
+                    Route::post('/restore', 'Course\CourseInstructorController@restore');
+                    Route::post('/bulk-import', 'Course\CourseInstructorController@bulk_import');
+                    Route::get('/{id}', 'Course\CourseInstructorController@show');
                 });
 
             });
-
         });
     }
 );

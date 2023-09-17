@@ -3,6 +3,7 @@
 namespace Database\Seeders\Course;
 
 use App\Models\Course\CourseModulClassRoutines;
+use App\Models\Course\CourseModuleClassRoutines;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -15,8 +16,8 @@ class CourseModuleClassRoutinesSeeder extends Seeder
      */
     public function run()
     {
-        CourseModulClassRoutines::truncate();
-        CourseModulClassRoutines::create([
+        CourseModuleClassRoutines::truncate();
+        CourseModuleClassRoutines::create([
             'course_id' => 1,
             'module_id' => 1,
             'class_id'  => 1,
@@ -26,7 +27,7 @@ class CourseModuleClassRoutinesSeeder extends Seeder
 
         ]);
 
-        CourseModulClassRoutines::create([
+        CourseModuleClassRoutines::create([
             'course_id' => 1,
             'module_id' => 2,
             'class_id'  => 4,
@@ -36,7 +37,7 @@ class CourseModuleClassRoutinesSeeder extends Seeder
 
         ]);
 
-        CourseModulClassRoutines::create([
+        CourseModuleClassRoutines::create([
             'course_id' => 1,
             'module_id' => 3,
             'class_id'  => 7,

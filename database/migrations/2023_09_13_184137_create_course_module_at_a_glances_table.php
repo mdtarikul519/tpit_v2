@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserContactNumbersTable extends Migration
+class CreateCourseModuleAtAGlancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateUserContactNumbersTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_contact_numbers', function (Blueprint $table) {
+        Schema::create('course_module_at_a_glances', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("user_id")->unsigned()->nullable();
-            $table->string('phone_number', 45)->nullable();
-            
+            $table->bigInteger("course_id")->unsigned()->nullable();
+            $table->text("title")->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');
@@ -32,6 +31,6 @@ class CreateUserContactNumbersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_contact_numbers');
+        Schema::dropIfExists('course_module_at_a_glances');
     }
 }

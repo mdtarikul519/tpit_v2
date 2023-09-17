@@ -17,7 +17,8 @@ class CreateUserSocialLinksTable extends Migration
             $table->id();
             $table->bigInteger("user_id")->unsigned()->nullable();
             $table->string('media_name', 100)->nullable();
-            $table->string('links', 100)->nullable();
+            $table->string('link', 100)->nullable();
+            
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');

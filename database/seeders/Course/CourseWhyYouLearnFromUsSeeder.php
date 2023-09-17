@@ -17,7 +17,15 @@ class CourseWhyYouLearnFromUsSeeder extends Seeder
         CourseWhyYouLearnFromUs::truncate();
         CourseWhyYouLearnFromUs::create([
             'course_id' => 1,
-            'title' => 'ইন্টার্নশিপ সুযোগ',
+            'title' => 'full time support',
+        ]);
+        CourseWhyYouLearnFromUs::create([
+            'course_id' => 1,
+            'title' => 'teacher support',
+        ]);
+        CourseWhyYouLearnFromUs::create([
+            'course_id' => 1,
+            'title' => 'dialy monitoring',
         ]);
 
     }

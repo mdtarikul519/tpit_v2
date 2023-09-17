@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseModulAtAGlancesTable extends Migration
+class CreateCourseModuleClassResoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateCourseModulAtAGlancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_modul_at_a_glances', function (Blueprint $table) {
+        Schema::create('course_module_class_resourses', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("course_id")->unsigned()->nullable();
-            $table->text("title")->nullable();
+            $table->bigInteger("course_module_class_id")->unsigned()->nullable();
+            $table->bigInteger("course_module_id")->unsigned()->nullable();
+            $table->text("resourse_content")->nullable();
+            $table->string("resourse_link", 100)->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');
@@ -31,6 +34,6 @@ class CreateCourseModulAtAGlancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_modul_at_a_glances');
+        Schema::dropIfExists('course_module_class_resourses');
     }
 }

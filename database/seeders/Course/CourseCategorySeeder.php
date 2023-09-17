@@ -4,6 +4,7 @@ namespace Database\Seeders\Course;
 
 use App\Models\Course\CourseCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CourseCategorySeeder extends Seeder
 {
@@ -28,6 +29,11 @@ class CourseCategorySeeder extends Seeder
         CourseCategory::create([
             'title' => 'ডিজিটাল মার্কেটিং',
         ]);
-       ;
+
+        DB::table('course_course_category')->truncate();
+        DB::table('course_course_category')->insert([
+            'course_category_id' => 1,
+            'course_id' => 1,
+        ]);
     }
 }

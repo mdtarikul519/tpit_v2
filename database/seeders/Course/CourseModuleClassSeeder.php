@@ -3,6 +3,7 @@
 namespace Database\Seeders\Course;
 
 use App\Models\Course\CourseModulClasses;
+use App\Models\Course\CourseModuleClasses;
 use Illuminate\Database\Seeder;
 
 class CourseModuleClassSeeder extends Seeder
@@ -14,8 +15,8 @@ class CourseModuleClassSeeder extends Seeder
      */
     public function run()
     {
-        CourseModulClasses::truncate();
-        CourseModulClasses::create([
+        CourseModuleClasses::truncate();
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>1,
             'class_no' =>  1,
@@ -26,7 +27,7 @@ class CourseModuleClassSeeder extends Seeder
 
         ]);   
 
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>1,
             'class_no' =>  2,
@@ -36,7 +37,7 @@ class CourseModuleClassSeeder extends Seeder
             'class_vedio_poster' => 'uplodes/course/graphic.jpg',
 
         ]);  
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>1,
             'class_no' =>  3,
@@ -49,7 +50,7 @@ class CourseModuleClassSeeder extends Seeder
 
         //modulse two class
 
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>2,
             'class_no' =>  1,
@@ -60,7 +61,7 @@ class CourseModuleClassSeeder extends Seeder
 
         ]);   
 
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>2,
             'class_no' =>  2,
@@ -70,7 +71,7 @@ class CourseModuleClassSeeder extends Seeder
             'class_vedio_poster' => 'uplodes/course/graphic.jpg',
 
         ]);  
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>2,
             'class_no' =>  3,
@@ -85,7 +86,8 @@ class CourseModuleClassSeeder extends Seeder
         //module theree
 
 
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
+            'course_id' =>1,
             'course_modules_id' =>3,
             'class_no' =>  1,
             'title' => 'Free Plan',
@@ -95,7 +97,7 @@ class CourseModuleClassSeeder extends Seeder
 
         ]);   
 
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>3,
             'class_no' =>  2,
@@ -105,7 +107,7 @@ class CourseModuleClassSeeder extends Seeder
             'class_vedio_poster' => 'uplodes/course/graphic.jpg',
 
         ]);  
-        CourseModulClasses::create([
+        CourseModuleClasses::create([
             'course_id' =>1,
             'course_modules_id' =>3,
             'class_no' =>  3,

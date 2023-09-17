@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseModulsTable extends Migration
+class CreateCourseBatchStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateCourseModulsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_moduls', function (Blueprint $table) {
+        Schema::create('course_batch_students', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("course_id")->unsigned()->nullable();
-            $table->bigInteger("moduls_no")->unsigned()->nullable();
-            $table->string("title", 100)->nullable();
+            $table->bigInteger('course_id')->nullable();
+            $table->bigInteger('batch_id')->nullable();
+            $table->bigInteger('student_id')->nullable();
+
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');
+            
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateCourseModulsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_moduls');
+        Schema::dropIfExists('course_batch_students');
     }
 }

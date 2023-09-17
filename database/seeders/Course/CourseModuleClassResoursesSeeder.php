@@ -3,7 +3,7 @@
 namespace Database\Seeders\Course;
 
 use App\Models\Course\CourseModulAtAGlances;
-use App\Models\Course\CourseModulClassResourses;
+use App\Models\Course\CourseModuleClassResourses;
 use Illuminate\Database\Seeder;
 
 class CourseModuleClassResoursesSeeder extends Seeder
@@ -15,8 +15,8 @@ class CourseModuleClassResoursesSeeder extends Seeder
      */
     public function run()
     {
-        CourseModulClassResourses::truncate();
-        CourseModulClassResourses::create([
+        CourseModuleClassResourses::truncate();
+        CourseModuleClassResourses::create([
             'course_id' => 1,
             'course_module_class_id' => 1,
             'course_module_id'  => 1,
@@ -24,7 +24,7 @@ class CourseModuleClassResoursesSeeder extends Seeder
             'resourse_link'  => 'https://www.youtube.com/watch?v=6oUi0C-aohw&list=PL9piC5qJFU80_9pl9Jq8D9HW1gX3KANSS',
         ]);
 
-        CourseModulClassResourses::create([
+        CourseModuleClassResourses::create([
             'course_id' => 1,
             'course_module_class_id' => 4,
             'course_module_id'  => 2,
@@ -32,7 +32,7 @@ class CourseModuleClassResoursesSeeder extends Seeder
             'resourse_link'  => 'https://www.youtube.com/watch?v=wrSYnZAUNNo',
         ]);
 
-        CourseModulClassResourses::create([
+        CourseModuleClassResourses::create([
             'course_id' => 1,
             'course_module_class_id' => 7,
             'course_module_id'  => 3,

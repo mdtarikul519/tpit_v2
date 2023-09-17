@@ -18,15 +18,19 @@ class CourseYouWillLearnsSeeder extends Seeder
         CourseYouWillLearns::truncate();
         CourseYouWillLearns::create([
             'course_id' => 1,
-            'title' => 'web design',
+            'title' => 'Stardard coding',
         ]);
         CourseYouWillLearns::create([
             'course_id' => 1,
-            'title' => 'graphich design',
+            'title' => 'Production standared work',
         ]);
         CourseYouWillLearns::create([
             'course_id' => 1,
-            'title' => 'database manegment',
+            'title' => 'time manegment',
+        ]);
+        CourseYouWillLearns::create([
+            'course_id' => 1,
+            'title' => 'promp engineering',
         ]);
 
     }

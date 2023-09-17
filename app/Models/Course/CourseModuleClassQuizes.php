@@ -5,7 +5,7 @@ namespace App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseModulClasses extends Model
+class CourseModuleClassQuizes extends Model
 {
     use HasFactory;
     protected $guarded = [];
