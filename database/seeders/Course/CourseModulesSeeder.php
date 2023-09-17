@@ -21,6 +21,18 @@ class CourseModulesSeeder extends Seeder
             'moduls_no' => 1,
             'title' => 'Frontend Recap',
         ]);   
+
+        CourseModul::create([
+            'course_id' => 1,
+            'moduls_no' => 2,
+            'title' => 'Object Oriented PHP',
+        ]);   
+
+        CourseModul::create([
+            'course_id' => 1,
+            'moduls_no' => 3,
+            'title' => 'Understanding Server side Technology',
+        ]);   
       
     }
 }
