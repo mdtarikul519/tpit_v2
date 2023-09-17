@@ -15,6 +15,7 @@ class CreateCourseModulClassRoutinesTable extends Migration
     {
         Schema::create('course_modul_class_routines', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("course_id")->unsigned()->nullable();
             $table->bigInteger("module_id")->unsigned()->nullable();
             $table->bigInteger("class_id")->unsigned()->nullable();
             $table->date("date")->nullable();

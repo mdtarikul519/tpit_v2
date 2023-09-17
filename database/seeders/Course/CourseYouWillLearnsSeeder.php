@@ -3,6 +3,7 @@
 namespace Database\Seeders\Course;
 
 use App\Models\Course\CourseWillLearns;
+use App\Models\Course\CourseYouWillLearns;
 use Illuminate\Database\Seeder;
 
 class CourseYouWillLearnsSeeder extends Seeder
@@ -14,10 +15,18 @@ class CourseYouWillLearnsSeeder extends Seeder
      */
     public function run()
     {
-        CourseWillLearns::truncate();
-        CourseWillLearns::create([
+        CourseYouWillLearns::truncate();
+        CourseYouWillLearns::create([
             'course_id' => 1,
-            'title' => 'এই কোর্সে যা যা শিখবেন',
+            'title' => 'web design',
+        ]);
+        CourseYouWillLearns::create([
+            'course_id' => 1,
+            'title' => 'graphich design',
+        ]);
+        CourseYouWillLearns::create([
+            'course_id' => 1,
+            'title' => 'database manegment',
         ]);
 
     }

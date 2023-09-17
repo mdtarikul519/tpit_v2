@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseWillLearnsTable extends Migration
+class CreateCourseYouWillLearnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCourseWillLearnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_will_learns', function (Blueprint $table) {
+        Schema::create('course_you_will_learns', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("course_id")->unsigned()->nullable();
             $table->text("title")->nullable();
@@ -31,6 +31,6 @@ class CreateCourseWillLearnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_will_learns');
+        Schema::dropIfExists('course_you_will_learns');
     }
 }

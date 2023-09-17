@@ -5,7 +5,7 @@ namespace Database\Seeders\Course;
 use App\Models\Course\CourseModulTaskCompleteByUsers;
 use Illuminate\Database\Seeder;
 
-class CourseModulTaskCompleteByUsersSeeder extends Seeder
+class CourseModuleTaskCompleteByUsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.

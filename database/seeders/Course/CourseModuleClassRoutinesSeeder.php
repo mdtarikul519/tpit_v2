@@ -6,7 +6,7 @@ use App\Models\Course\CourseModulClassRoutines;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class CourseModulClassRoutinesSeeder extends Seeder
+class CourseModuleClassRoutinesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,6 +17,7 @@ class CourseModulClassRoutinesSeeder extends Seeder
     {
         CourseModulClassRoutines::truncate();
         CourseModulClassRoutines::create([
+            'course_id' => 1,
             'module_id' => 1,
             'class_id'  => 1,
             'date' => '2023-01-11',
@@ -26,6 +27,7 @@ class CourseModulClassRoutinesSeeder extends Seeder
         ]);
 
         CourseModulClassRoutines::create([
+            'course_id' => 1,
             'module_id' => 2,
             'class_id'  => 4,
             'date' => '2023-01-12',
@@ -35,6 +37,7 @@ class CourseModulClassRoutinesSeeder extends Seeder
         ]);
 
         CourseModulClassRoutines::create([
+            'course_id' => 1,
             'module_id' => 3,
             'class_id'  => 7,
             'date' => '2023-01-13',

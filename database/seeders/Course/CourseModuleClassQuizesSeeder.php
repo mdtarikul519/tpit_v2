@@ -5,7 +5,7 @@ namespace Database\Seeders\Course;
 use App\Models\Course\CourseModulClassQuizes;
 use Illuminate\Database\Seeder;
 
-class CourseModulClassQuizesSeeder extends Seeder
+class CourseModuleClassQuizesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +16,13 @@ class CourseModulClassQuizesSeeder extends Seeder
     {
         CourseModulClassQuizes::truncate();
         CourseModulClassQuizes::create([
+            'course_id' => 1,
             'course_module_class_id' => 1,
             'quiz_id'  => 1,
         ]);
 
-        CourseModulClassQuizes::truncate();
         CourseModulClassQuizes::create([
+            'course_id' => 1,
             'course_module_class_id' => 2,
             'quiz_id'  => 2,
         ]);

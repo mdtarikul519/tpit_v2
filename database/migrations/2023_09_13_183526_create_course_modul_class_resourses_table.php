@@ -15,6 +15,7 @@ class CreateCourseModulClassResoursesTable extends Migration
     {
         Schema::create('course_modul_class_resourses', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("course_id")->unsigned()->nullable();
             $table->bigInteger("course_module_class_id")->unsigned()->nullable();
             $table->bigInteger("course_module_id")->unsigned()->nullable();
             $table->text("resourse_content")->nullable();
