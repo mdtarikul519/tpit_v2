@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoursesTable extends Migration
+class CreateUserSocialLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('user_social_links', function (Blueprint $table) {
             $table->id();
-            $table->string("title", 200)->nullable();
-            $table->string("image", 200)->nullable();
-            $table->string("intro_vedio", 200)->nullable();
-            $table->text("what_is_this_course")->nullable();
-            $table->text("why_is_this_course")->nullable();
+            $table->bigInteger("user_id")->unsigned()->nullable();
+            $table->string('media_name', 100)->nullable();
+            $table->string('links', 100)->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('user_social_links');
     }
 }
