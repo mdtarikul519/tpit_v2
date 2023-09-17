@@ -20,7 +20,7 @@ class CreateCourseInstructorsTable extends Migration
             $table->string("cover_photo", 100)->nullable();
             $table->string("full_name", 100)->nullable();
             $table->string("designation", 100)->nullable();
-            $table->string("details", 100)->nullable();
+            $table->text("details")->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
             $table->enum('status',['active','inactive'])->default('active');

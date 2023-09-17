@@ -15,7 +15,7 @@ class CourseWhatYouWillGetSeeder extends Seeder
     public function run()
     {
         CourseWhatYouWillGets::truncate();
-        CourseModulAtAGlances::create([
+        CourseWhatYouWillGets::create([
             'course_id' => 1,
             'title' => 'ইন্টার্নশিপ সুযোগ',
         ]);

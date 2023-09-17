@@ -15,9 +15,11 @@ class CreateCourseModulClassesTable extends Migration
     {
         Schema::create('course_modul_classes', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger("course_id")->unsigned()->nullable();
             $table->bigInteger("course_modules_id")->unsigned()->nullable();
             $table->string("class_no", 20)->nullable();
             $table->text("title")->nullable();
+            $table->enum('type', ['live','recorded'])->default('recorded');
             $table->string("class_vedio_link", 150)->nullable();
             $table->string("class_vedio_poster", 100)->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();

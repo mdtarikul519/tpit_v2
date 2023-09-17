@@ -98,7 +98,7 @@ class UserSeeder extends Seeder
         $user->first_name = 'mr';
         $user->last_name = 'user';
         $user->user_name = 'user';
-        $user->telegram_id = '812239513';
+        $user->telegram_id = '8129513';
         // $user->role_id = 3;
         $user->mobile_number = '016125';
         $user->email = 'user@gmail.com';
@@ -112,9 +112,9 @@ class UserSeeder extends Seeder
         $user->first_name = 'rakibul';
         $user->last_name = 'islam';
         $user->user_name = 'rakibul islam';
-        $user->telegram_id = '812239513';
+        $user->telegram_id = '81223953';
         // $user->role_id = 1;
-        $user->mobile_number = '016123';
+        $user->mobile_number = '016183';
         $user->email = 'instuctor1@gmail.com';
         $user->password = Hash::make('12345678');
         $user->save();
@@ -129,7 +129,7 @@ class UserSeeder extends Seeder
         $user->user_name = 'shefat masum';
         $user->telegram_id = '812239513';
         // $user->role_id = 1;
-        $user->mobile_number = '016123';
+        $user->mobile_number = '01618823';
         $user->email = 'instuctor2@gmail.com';
         $user->password = Hash::make('12345678');
         $user->save();
