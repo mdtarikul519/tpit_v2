@@ -23,7 +23,7 @@ class CourseInstructorController extends Controller
             $status = request()->status;
         }
 
-        $query = CourseInstructors::where('status', $status)->orderBy($orderBy, $orderByType);
+  $query = CourseInstructors::where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
@@ -91,19 +91,24 @@ class CourseInstructorController extends Controller
         $data->details = request()->details;
         $data->save();
 
-        if(request()->hasFile(('cover_photo'))){
+        if(request()->hasFile('cover_photo')){
             
         }
+
+      
         return response()->json($data, 200);
     }
 
     public function canvas_store()
     {
         $validator = Validator::make(request()->all(), [
+            'user_id' => ['required'],
+            'course_id' => ['required'],
+            'cover_photo' => ['required'],
             'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'designation' => ['required'],
+            'details' => ['required'],
+
         ]);
 
         if ($validator->fails()) {
@@ -114,11 +119,16 @@ class CourseInstructorController extends Controller
         }
 
         $data = new CourseInstructors();
+        $data->user_id = request()->user_id;
+        $data->course_id = request()->course_id;
         $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data->designation = request()->designation;
+        $data->details = request()->details;
         $data->save();
+
+        if(request()->hasFile('cover_photo')){
+            
+        }
 
         return response()->json($data, 200);
     }
@@ -129,15 +139,18 @@ class CourseInstructorController extends Controller
         if(!$data){
             return response()->json([
                 'err_message' => 'validation error',
-                'errors' => ['name'=>['user_role not found by given id '.(request()->id?request()->id:'null')]],
+                'errors' => ['name'=>['Course Instructors not found by given id '.(request()->id?request()->id:'null')]],
             ], 422);
         }
 
         $validator = Validator::make(request()->all(), [
+            'user_id' => ['required'],
+            'course_id' => ['required'],
+            'cover_photo' => ['required'],
             'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'designation' => ['required'],
+            'details' => ['required'],
+
         ]);
 
         if ($validator->fails()) {
@@ -147,11 +160,12 @@ class CourseInstructorController extends Controller
             ], 422);
         }
 
+        $data->user_id = request()->user_id;
+        $data->course_id = request()->course_id;
         $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
-        $data->save();
+        $data->designation = request()->designation;
+        $data->details = request()->details;
+        $data->update();
 
         return response()->json($data, 200);
     }
@@ -167,10 +181,12 @@ class CourseInstructorController extends Controller
         }
 
         $validator = Validator::make(request()->all(), [
+            'user_id' => ['required'],
+            'course_id' => ['required'],
+            'cover_photo' => ['required'],
             'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'designation' => ['required'],
+            'details' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -180,11 +196,12 @@ class CourseInstructorController extends Controller
             ], 422);
         }
 
+        $data->user_id = request()->user_id;
+        $data->course_id = request()->course_id;
         $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
-        $data->save();
+        $data->designation = request()->designation;
+        $data->details = request()->details;
+        $data->update();
 
         return response()->json($data, 200);
     }
@@ -203,7 +220,7 @@ class CourseInstructorController extends Controller
         }
 
         $data = CourseInstructors::find(request()->id);
-        $data->status = 0;
+        $data->status = 'inactive';
         $data->save();
 
         return response()->json([
@@ -213,6 +230,24 @@ class CourseInstructorController extends Controller
 
     public function destroy()
     {
+
+        $validator = Validator::make(request()->all(), [
+            'id' => ['required', 'exists:course_instructors,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = CourseInstructors::find(request()->id);
+        $data->delete();
+
+        return response()->json([
+            'result' => 'deleted',
+        ], 200);
     }
 
     public function restore()
