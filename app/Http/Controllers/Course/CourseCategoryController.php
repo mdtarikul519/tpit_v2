@@ -7,6 +7,7 @@ use App\Models\Course\CourseCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\ContactMessage;
 
 class CourseCategoryController extends Controller
 {
@@ -26,15 +27,8 @@ class CourseCategoryController extends Controller
         if (request()->has('search_key')) {
             $key = request()->search_key;
             $query->where(function ($q) use ($key) {
-                return $q->where('full_name', '%' . $key . '%')
-                    ->orWhere('father_name', '%' . $key . '%')
-                    ->orWhere('nid', '%' . $key . '%')
-                    ->orWhere('gender', '%' . $key . '%')
-                    ->orWhere('present_address', '%' . $key . '%')
-                    ->orWhere('permanent_address', 'LIKE', '%' . $key . '%')
-                    ->orWhere('nationality', 'LIKE', '%' . $key . '%')
-                    ->orWhere('phone_number', 'LIKE', '%' . $key . '%')
-                    ->orWhere('email', 'LIKE', '%' . $key . '%');
+                return $q->where('id', '%' . $key . '%')
+                    ->orWhere('title', '%' . $key . '%');
             });
         }
 
@@ -45,7 +39,7 @@ class CourseCategoryController extends Controller
     public function show($id)
     {
 
-        $select = "*";
+        $select = ["*"];
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
@@ -63,19 +57,104 @@ class CourseCategoryController extends Controller
             ], 404);
         }
     }
+    public function store()
+    {
+        $validator = Validator::make(request()->all(), [
+            'title' => ['required'],
+        ]);
 
-    public function approve()
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = new CourseCategory();
+        $data->title = request()->title;
+        $data->save();
+
+        return response()->json($data, 200);
+    }
+
+    public function canvas_store()
+    {
+        $validator = Validator::make(request()->all(), [
+            'title' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = new CourseCategory();
+        $data->title = request()->title;
+        $data->save();
+
+        return response()->json($data, 200);
+    }
+
+    public function update()
     {
         $data = CourseCategory::find(request()->id);
-        $data->application_status = request()->status;
-        $data->save();
-        return $data;
+        if(!$data){
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => ['name'=>['user_role not found by given id '.(request()->id?request()->id:'null')]],
+            ], 422);
+        }
+
+        $validator = Validator::make(request()->all(), [
+            'title' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data->title = request()->title;
+        $data->update();
+
+        return response()->json($data, 200);
+    }
+
+    public function canvas_update()
+    {
+        $data = CourseCategory::find(request()->id);
+        if(!$data){
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => ['name'=>['user_role not found by given id '.(request()->id?request()->id:'null')]],
+            ], 422);
+        }
+
+        $validator = Validator::make(request()->all(), [
+            'title' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data->title = request()->title;
+        $data->update();
+
+        return response()->json($data, 200);
     }
 
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required', 'exists:users,id'],
+            'id' => ['required','exists:contact_messages,id'],
         ]);
 
         if ($validator->fails()) {
@@ -86,18 +165,18 @@ class CourseCategoryController extends Controller
         }
 
         $data = CourseCategory::find(request()->id);
-        $data->status = 0;
+        $data->status = 'inactive';
         $data->save();
 
         return response()->json([
-            'result' => 'deactivated',
+                'result' => 'deactivated',
         ], 200);
     }
 
     public function destroy()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required'],
+            'id' => ['required','exists:contact_messages,id'],
         ]);
 
         if ($validator->fails()) {
@@ -110,13 +189,15 @@ class CourseCategoryController extends Controller
         $data = CourseCategory::find(request()->id);
         $data->delete();
 
-        return response()->json('data fully deleted');
+        return response()->json([
+                'result' => 'deleted',
+        ], 200);
     }
 
     public function restore()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required'],
+            'id' => ['required','exists:contact_messages,id'],
         ]);
 
         if ($validator->fails()) {
@@ -127,18 +208,18 @@ class CourseCategoryController extends Controller
         }
 
         $data = CourseCategory::find(request()->id);
-        $data->status = 1;
+        $data->status = 'active';
         $data->save();
 
         return response()->json([
-            'result' => 'activated',
+                'result' => 'activated',
         ], 200);
     }
 
     public function bulk_import()
     {
         $validator = Validator::make(request()->all(), [
-            'data' => ['required', 'array'],
+            'data' => ['required','array'],
         ]);
 
         if ($validator->fails()) {
@@ -149,15 +230,11 @@ class CourseCategoryController extends Controller
         }
 
         foreach (request()->data as $item) {
-            if (isset($item['photo_url']))
-                unset($item['photo_url']);
-
-            $item['created_at'] = $item['created_at'] ? Carbon::parse($item['created_at']) : Carbon::now()->toDateTimeString();
-            $item['updated_at'] = $item['updated_at'] ? Carbon::parse($item['updated_at']) : Carbon::now()->toDateTimeString();
+            $item['created_at'] = $item['created_at'] ? Carbon::parse($item['created_at']): Carbon::now()->toDateTimeString();
+            $item['updated_at'] = $item['updated_at'] ? Carbon::parse($item['updated_at']): Carbon::now()->toDateTimeString();
             $item = (object) $item;
-
-            $check = CourseCategory::where('id', $item->id)->first();
-            if (!$check) {
+            $check = CourseCategory::where('id',$item->id)->first();
+            if(!$check){
                 try {
                     CourseCategory::create((array) $item);
                 } catch (\Throwable $th) {

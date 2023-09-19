@@ -7,7 +7,7 @@ content-type: application/json
 }
 
 ###
-GET  http://127.0.0.1:8000/api/v1/user/auth-check HTTP/1.1
+POST http://127.0.0.1:8000/api/v1/course/store HTTP/1.1
 content-type: application/json
 
 {
@@ -30,3 +30,22 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpI
 ###
 
 POST http://127.0.0.1:8006/api/v1/user/get-token?id=3 HTTP/1.1
+
+
+### store data
+# @prompt title enter title
+POST http://127.0.0.1:8000/api/v1/course/store HTTP/1.1
+content-type: application/json
+
+{
+    "dasfs" : "{{title}}"
+}
+
+###
+POST http://127.0.0.1:8000/api/v1/course/soft-delete HTTP/1.1
+content-type: application/json
+
+{
+    "email": "myphoto288@gmail.com",
+    "password": "12345678"
+}

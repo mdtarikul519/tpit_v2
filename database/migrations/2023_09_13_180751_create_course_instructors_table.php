@@ -30,8 +30,9 @@ class CreateCourseInstructorsTable extends Migration
 
         Schema::create('course_course_instructor', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('instructors_id')->nullable();
+            $table->bigInteger('instructor_id')->nullable();
             $table->bigInteger('course_id')->nullable();
+            $table->bigInteger('batch_id')->nullable();
             $table->timestamps();
         });
     }
