@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\SeedersUser;
+namespace Database\Seeders\User;
 
 use App\Models\User\UserContactNumber;
 use Illuminate\Database\Seeder;
@@ -22,12 +22,12 @@ class UserContactNumberSeeder extends Seeder
 
         UserContactNumber::create([
             'user_id' => 2,
-            'title' => '01721241299',
+            'Phone_number' => '01721241299',
         ]);
         
         UserContactNumber::create([
             'user_id' => 3,
-            'title' => '01721141299',
+            'Phone_number' => '01721141299',
         ]);
 
     }

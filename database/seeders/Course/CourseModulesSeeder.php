@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\Course;
 
-use App\Models\Course\CourseModul;
+use App\Models\Course\CourseModule;
 use Illuminate\Database\Seeder;
 
 class CourseModulesSeeder extends Seeder
@@ -15,20 +15,20 @@ class CourseModulesSeeder extends Seeder
     public function run()
     {
 
-        CourseModul::truncate();
-        CourseModul::create([
+        CourseModule::truncate();
+        CourseModule::create([
             'course_id' => 1,
             'moduls_no' => 1,
             'title' => 'Frontend Recap',
         ]);   
 
-        CourseModul::create([
+        CourseModule::create([
             'course_id' => 1,
             'moduls_no' => 2,
             'title' => 'Object Oriented PHP',
         ]);   
 
-        CourseModul::create([
+        CourseModule::create([
             'course_id' => 1,
             'moduls_no' => 3,
             'title' => 'Understanding Server side Technology',

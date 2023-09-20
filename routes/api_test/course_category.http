@@ -14,88 +14,87 @@
 ### get all data without pagination
 ### will return:  { full_name: '', email: '', token: '' }
 GET {{url}}/all HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
+content-type: application/json
+# Authorization: {{token}}
 
-### get single data without pagination
+### get single data
 # @prompt id enter id
-DELETE {{url}}/{{id}} HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
+GET {{url}}/{{id}} HTTP/1.1
+content-type: application/json
+# Authorization: {{token}}
 
 ### store data
-# @prompt full_name enter id
-GET {{url}}/store HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-{
-    "full_name": "{{full_name}}",
-    "email": "{{full_name}}@gmail.com",
-    "dob": "{{$timestamp -7300 d}}",
-    "user_role": "admin",
-    "gender": "male",
-    "courses": "[\"webdesign\",\"graphics design\"]",
-    "description": "demo description",
-    "image": "avatar.png",
-    "createdAt": "{{createdAt}}"
-}
-
-### store data canvas
-GET {{url}}/canvas-store HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### update data
-GET {{url}}/update HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### update data canvas
-GET {{url}}/canvas-update HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### soft-delete
-GET {{url}}/soft-delete HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### destroy
-GET {{url}}/destroy HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### restore
-GET {{url}}/restore HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### restore
-GET {{url}}/restore HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### bulk-import
-GET {{url}}/bulk-import HTTP/1.1
-Accept: application/json
-Authorization: {{token}}
-
-### create data
-# @prompt full_name enter full name
-POST {{url}} HTTP/1.1
+# @prompt title enter title
+POST {{url}}/store HTTP/1.1
 content-type: application/json
 
 {
-    "full_name": "{{full_name}}",
-    "email": "{{full_name}}@gmail.com",
-    "dob": "{{$timestamp -7300 d}}",
-    "user_role": "admin",
-    "gender": "male",
-    "courses": "[\"webdesign\",\"graphics design\"]",
-    "description": "demo description",
-    "image": "avatar.png",
-    "createdAt": "{{createdAt}}"
+    "title": "{{title}}"
 }
 
+
+### store data canvas
+# @prompt title enter title
+POST {{url}}/canvas-store HTTP/1.1
+content-type: application/json
+# Authorization: {{token}}
+
+{
+    "title": "{{title}}"
+}
+
+### update data
+# @prompt id enter id
+POST {{url}}/update HTTP/1.1
+content-type: application/json
+# Authorization: {{token}}
+
+{
+    "id": "{{id}}",
+    "title": "title update"
+}
+
+### update data canvas
+# @prompt id enter id
+POST {{url}}/canvas-update HTTP/1.1
+content-type: application/json
+# Authorization: {{token}}
+
+{
+    "id": "{{id}}",
+    "title": "title update"
+}
+
+#### soft delete
+# @prompt id enter id
+POST {{url}}/soft-delete HTTP/1.1
+content-type: application/json
+
+{
+    "id": "{{id}}"
+}
+
+#### permenently delete 
+# @prompt id enter id
+POST {{url}}/destroy HTTP/1.1
+content-type: application/json
+
+{
+    "id": "{{id}}"
+}
+
+### restore
+# @prompt id enter id
+POST {{url}}/restore HTTP/1.1
+content-type: application/json
+# Authorization: {{token}}
+
+{
+    "id": "{{id}}"
+}
+
+### bulk-import
+GET {{url}}/bulk-import HTTP/1.1
+content-type: application/json
+# Authorization: {{token}}
 

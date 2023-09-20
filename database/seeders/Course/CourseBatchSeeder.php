@@ -3,6 +3,7 @@
 namespace Database\Seeders\Course;
 
 use App\Models\Course\CourseBatches;
+use App\Models\Course\CourseBatchStudent;
 use Illuminate\Database\Seeder;
 
 class CourseBatchSeeder extends Seeder
@@ -15,7 +16,7 @@ class CourseBatchSeeder extends Seeder
     public function run()
     {
         CourseBatches::truncate();
-        CourseBatches::create([
+        $batch = CourseBatches::create([
             'course_id' => 1,
             'batch_name' => 'web-202304',
             'admission_start_date' => '2023-09-25',
@@ -29,10 +30,15 @@ class CourseBatchSeeder extends Seeder
             'class_days' => 'রবিবার,মঙ্গলবার,বৃহস্পতিবার' ,
             'class_start_time' => '10:00',
             'class_end_time' => '12:00',
-
         ]);
 
-        CourseBatches::create([
+        CourseBatchStudent::create([
+            'course_id' => 1,
+            'batch_id' => $batch->id,
+            'student_id' => 6,
+        ]);
+
+        $batch = CourseBatches::create([
             'course_id' => 2,
             'batch_name' => 'gd-202304',
             'admission_start_date' => '2023-09-25',
@@ -46,7 +52,12 @@ class CourseBatchSeeder extends Seeder
             'class_days' => 'রবিবার,মঙ্গলবার,বৃহস্পতিবার' ,
             'class_start_time' => '10:00',
             'class_end_time' => '12:00',
+        ]);
 
+        CourseBatchStudent::create([
+            'course_id' => 1,
+            'batch_id' => $batch->id,
+            'student_id' => 7,
         ]);
     }
 }
