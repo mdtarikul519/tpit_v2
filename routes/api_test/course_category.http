@@ -74,7 +74,7 @@ content-type: application/json
     "id": "{{id}}"
 }
 
-#### permenently delete 
+#### permenently delete
 # @prompt id enter id
 POST {{url}}/destroy HTTP/1.1
 content-type: application/json
