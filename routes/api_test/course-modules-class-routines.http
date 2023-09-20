@@ -40,14 +40,18 @@ content-type: application/json
 
 
 ### store data canvas
-# @prompt title enter title
+# @prompt course_id enter course_id
 POST {{url}}/canvas-store HTTP/1.1
 content-type: application/json
 # Authorization: {{token}}
 
 {
-    "course_id": "1",
-    "title": "{{title}}",
+   "course_id": "{{course_id}}",
+    "module_id": "1",
+    "class_id": "1",
+    "date": "2023-09-12",
+    "time": "18:20",
+    "topic": "c++",
     "created_at": "{{createdAt}}"
 }
 
@@ -59,8 +63,12 @@ content-type: application/json
 
 {
     "id": "{{id}}",
-    "course_id": "1",
-    "title": "this is a update", 
+    "course_id": "2",
+    "module_id": "5",
+    "class_id": "1",
+    "date": "2023-09-12",
+    "time": "18:20",
+    "topic": "c++",
     "created_at": "{{createdAt}}"
 }
 
@@ -73,7 +81,11 @@ content-type: application/json
 {
     "id": "{{id}}",
     "course_id": "1",
-    "title": "this is a canvous update", 
+    "module_id": "1",
+    "class_id": "1",
+    "date": "2023-09-12",
+    "time": "18:20",
+    "topic": "c++",  
     "created_at": "{{createdAt}}"
 }
 
