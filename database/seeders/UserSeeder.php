@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
         DB::table('user_user_role')->truncate();
         DB::table('user_user_permission')->truncate();
 
+
         $user_role = new UserRole();
         $user_role->id = 10;
         $user_role->name = 'super_admin';
@@ -38,6 +39,18 @@ class UserSeeder extends Seeder
         $user_role->id = 30;
         $user_role->name = 'user';
         $user_role->role_serial = 3;
+        $user_role->save();
+
+        $user_role = new UserRole();
+        $user_role->id = 31;
+        $user_role->name = 'instructor';
+        $user_role->role_serial = 4;
+        $user_role->save();
+     
+        $user_role = new UserRole();
+        $user_role->id = 32;
+        $user_role->name = 'student';
+        $user_role->role_serial = 5;
         $user_role->save();
 
         UserPermission::truncate();
@@ -92,7 +105,7 @@ class UserSeeder extends Seeder
         $user->first_name = 'mr';
         $user->last_name = 'user';
         $user->user_name = 'user';
-        $user->telegram_id = '812239513';
+        $user->telegram_id = '8129513';
         // $user->role_id = 3;
         $user->mobile_number = '016125';
         $user->email = 'user@gmail.com';
@@ -100,6 +113,60 @@ class UserSeeder extends Seeder
         $user->save();
         $user->roles()->attach([3]);
         $user->permissions()->attach([1]);
+
+
+        $user = new User();
+        $user->first_name = 'rakibul';
+        $user->last_name = 'islam';
+        $user->user_name = 'rakibul islam';
+        $user->telegram_id = '81223953';
+        // $user->role_id = 1;
+        $user->mobile_number = '016183';
+        $user->email = 'instuctor1@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->save();
+        $user->roles()->attach([4]);
+        $user->permissions()->attach([1,2,3]);
+
+
+        $user = new User();
+        $user->first_name = 'shefat';
+        $user->last_name = 'masum';
+        $user->user_name = 'shefat masum';
+        $user->telegram_id = '812239513';
+        // $user->role_id = 1;
+        $user->mobile_number = '01618823';
+        $user->email = 'instuctor2@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->save();
+        $user->roles()->attach([4]);
+        $user->permissions()->attach([1,2,3]);
+
+        $user = new User();
+        $user->first_name = 'student 1';
+        $user->last_name = 'arif';
+        $user->user_name = 'student_1';
+        $user->telegram_id = '812239513';
+        // $user->role_id = 1;
+        $user->mobile_number = '016188235';
+        $user->email = 'student_1@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->save();
+        $user->roles()->attach([5]);
+        $user->permissions()->attach([1,2,3]);
+
+        $user = new User();
+        $user->first_name = 'student 2';
+        $user->last_name = 'sohel';
+        $user->user_name = 'student_2';
+        $user->telegram_id = '812239513';
+        // $user->role_id = 1;
+        $user->mobile_number = '016188233';
+        $user->email = 'student_2@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->save();
+        $user->roles()->attach([5]);
+        $user->permissions()->attach([1,2,3]);
 
     }
 }
