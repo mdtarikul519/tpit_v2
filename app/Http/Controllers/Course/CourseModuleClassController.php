@@ -8,8 +8,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ContactMessage;
+use App\Models\Course\CourseModuleClasses;
 
-class CourseModuleClassResoursesController extends Controller
+class CourseModuleClassController extends Controller
 {
     public function all()
     {
@@ -22,20 +23,19 @@ class CourseModuleClassResoursesController extends Controller
             $status = request()->status;
         }
 
-        $query = CourseCategory::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = CourseModuleClasses::where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
             $query->where(function ($q) use ($key) {
-                return $q->where('full_name', '%' . $key . '%')
-                    ->orWhere('father_name', '%' . $key . '%')
-                    ->orWhere('nid', '%' . $key . '%')
-                    ->orWhere('gender', '%' . $key . '%')
-                    ->orWhere('present_address', '%' . $key . '%')
-                    ->orWhere('permanent_address', 'LIKE', '%' . $key . '%')
-                    ->orWhere('nationality', 'LIKE', '%' . $key . '%')
-                    ->orWhere('phone_number', 'LIKE', '%' . $key . '%')
-                    ->orWhere('email', 'LIKE', '%' . $key . '%');
+                return $q->where('id', '%' . $key . '%')
+                    ->orWhere('course_id', '%' . $key . '%')
+                    ->orWhere('course_modules_id', '%' . $key . '%')
+                    ->orWhere('class_no', '%' . $key . '%')
+                    ->orWhere('title', '%' . $key . '%')
+                    ->orWhere('type', 'LIKE', '%' . $key . '%')
+                    ->orWhere('class_vedio_link', 'LIKE', '%' . $key . '%')
+                    ->orWhere('class_vedio_poster', 'LIKE', '%' . $key . '%');
             });
         }
 
@@ -50,7 +50,7 @@ class CourseModuleClassResoursesController extends Controller
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
-        $data = CourseCategory::where('id', $id)
+        $data = CourseModuleClasses::where('id', $id)
             ->select($select)
             ->first();
         if ($data) {
@@ -67,10 +67,14 @@ class CourseModuleClassResoursesController extends Controller
     public function store()
     {
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'course_modules_id' => ['required'],
+            'class_no' => ['required'],
+            'title' => ['required'],
+            'type' => ['required'],
+            'class_vedio_link' => ['required'],
+            'class_vedio_poster' => ['required'],
+
         ]);
 
         if ($validator->fails()) {
@@ -80,11 +84,14 @@ class CourseModuleClassResoursesController extends Controller
             ], 422);
         }
 
-        $data = new ContactMessage();
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data = new CourseModuleClasses();
+        $data->course_id = request()->course_id;
+        $data->course_modules_id = request()->course_modules_id;
+        $data->class_no = request()->class_no;
+        $data->title = request()->title;
+        $data->type = request()->type;
+        $data->class_vedio_link = request()->class_vedio_link;
+        $data->class_vedio_poster = request()->class_vedio_poster;
         $data->save();
 
         return response()->json($data, 200);
@@ -93,10 +100,13 @@ class CourseModuleClassResoursesController extends Controller
     public function canvas_store()
     {
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'course_modules_id' => ['required'],
+            'class_no' => ['required'],
+            'title' => ['required'],
+            'type' => ['required'],
+            'class_vedio_link' => ['required'],
+            'class_vedio_poster' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -106,11 +116,14 @@ class CourseModuleClassResoursesController extends Controller
             ], 422);
         }
 
-        $data = new ContactMessage();
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data = new CourseModuleClasses();
+        $data->course_id = request()->course_id;
+        $data->course_modules_id = request()->course_modules_id;
+        $data->class_no = request()->class_no;
+        $data->title = request()->title;
+        $data->type = request()->type;
+        $data->class_vedio_link = request()->class_vedio_link;
+        $data->class_vedio_poster = request()->class_vedio_poster;
         $data->save();
 
         return response()->json($data, 200);
@@ -118,7 +131,7 @@ class CourseModuleClassResoursesController extends Controller
 
     public function update()
     {
-        $data = ContactMessage::find(request()->id);
+        $data = CourseModuleClasses::find(request()->id);
         if(!$data){
             return response()->json([
                 'err_message' => 'validation error',
@@ -127,10 +140,13 @@ class CourseModuleClassResoursesController extends Controller
         }
 
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'course_modules_id' => ['required'],
+            'class_no' => ['required'],
+            'title' => ['required'],
+            'type' => ['required'],
+            'class_vedio_link' => ['required'],
+            'class_vedio_poster' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -140,10 +156,13 @@ class CourseModuleClassResoursesController extends Controller
             ], 422);
         }
 
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data->course_id = request()->course_id;
+        $data->course_modules_id = request()->course_modules_id;
+        $data->class_no = request()->class_no;
+        $data->title = request()->title;
+        $data->type = request()->type;
+        $data->class_vedio_link = request()->class_vedio_link;
+        $data->class_vedio_poster = request()->class_vedio_poster;
         $data->save();
 
         return response()->json($data, 200);
@@ -151,7 +170,7 @@ class CourseModuleClassResoursesController extends Controller
 
     public function canvas_update()
     {
-        $data = ContactMessage::find(request()->id);
+        $data = CourseModuleClasses::find(request()->id);
         if(!$data){
             return response()->json([
                 'err_message' => 'validation error',
@@ -160,10 +179,13 @@ class CourseModuleClassResoursesController extends Controller
         }
 
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'course_modules_id' => ['required'],
+            'class_no' => ['required'],
+            'title' => ['required'],
+            'type' => ['required'],
+            'class_vedio_link' => ['required'],
+            'class_vedio_poster' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -172,11 +194,13 @@ class CourseModuleClassResoursesController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data->course_id = request()->course_id;
+        $data->course_modules_id = request()->course_modules_id;
+        $data->class_no = request()->class_no;
+        $data->title = request()->title;
+        $data->type = request()->type;
+        $data->class_vedio_link = request()->class_vedio_link;
+        $data->class_vedio_poster = request()->class_vedio_poster;
         $data->save();
 
         return response()->json($data, 200);
@@ -185,7 +209,7 @@ class CourseModuleClassResoursesController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required','exists:contact_messages,id'],
+            'id' => ['required','exists:course_module_classes,id'],
         ]);
 
         if ($validator->fails()) {
@@ -195,8 +219,8 @@ class CourseModuleClassResoursesController extends Controller
             ], 422);
         }
 
-        $data = ContactMessage::find(request()->id);
-        $data->status = 0;
+        $data = CourseModuleClasses::find(request()->id);
+        $data->status = 'inactive';
         $data->save();
 
         return response()->json([
@@ -206,6 +230,23 @@ class CourseModuleClassResoursesController extends Controller
 
     public function destroy()
     {
+        $validator = Validator::make(request()->all(), [
+            'id' => ['required','exists:course_module_classes,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = CourseModuleClasses::find(request()->id);
+        $data->delete();
+
+        return response()->json([
+                'result' => 'deleted',
+        ], 200);
     }
 
     public function restore()
@@ -221,7 +262,7 @@ class CourseModuleClassResoursesController extends Controller
             ], 422);
         }
 
-        $data = ContactMessage::find(request()->id);
+        $data = CourseModuleClasses::find(request()->id);
         $data->status = 1;
         $data->save();
 
@@ -247,10 +288,10 @@ class CourseModuleClassResoursesController extends Controller
             $item['created_at'] = $item['created_at'] ? Carbon::parse($item['created_at']): Carbon::now()->toDateTimeString();
             $item['updated_at'] = $item['updated_at'] ? Carbon::parse($item['updated_at']): Carbon::now()->toDateTimeString();
             $item = (object) $item;
-            $check = ContactMessage::where('id',$item->id)->first();
+            $check = CourseModuleClasses::where('id',$item->id)->first();
             if(!$check){
                 try {
-                    ContactMessage::create((array) $item);
+                    CourseModuleClasses::create((array) $item);
                 } catch (\Throwable $th) {
                     return response()->json([
                         'err_message' => 'validation error',
