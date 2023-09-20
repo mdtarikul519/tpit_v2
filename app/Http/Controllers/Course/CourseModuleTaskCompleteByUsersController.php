@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Course\CourseCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\ContactMessage;
+use App\Models\Course\CourseModuleTaskCompleteByUsers;
+use Illuminate\Support\Facades\Validator;
 
-class CourseModuleClassQuizesController extends Controller
+class CourseModuleTaskCompleteByUsersController extends Controller
 {
     public function all()
     {
@@ -22,20 +23,19 @@ class CourseModuleClassQuizesController extends Controller
             $status = request()->status;
         }
 
-        $query = CourseCategory::where('status', $status)->orderBy($orderBy, $orderByType);
+        $query = CourseModuleTaskCompleteByUsers::where('status', $status)->orderBy($orderBy, $orderByType);
 
         if (request()->has('search_key')) {
             $key = request()->search_key;
             $query->where(function ($q) use ($key) {
-                return $q->where('full_name', '%' . $key . '%')
-                    ->orWhere('father_name', '%' . $key . '%')
-                    ->orWhere('nid', '%' . $key . '%')
-                    ->orWhere('gender', '%' . $key . '%')
-                    ->orWhere('present_address', '%' . $key . '%')
-                    ->orWhere('permanent_address', 'LIKE', '%' . $key . '%')
-                    ->orWhere('nationality', 'LIKE', '%' . $key . '%')
-                    ->orWhere('phone_number', 'LIKE', '%' . $key . '%')
-                    ->orWhere('email', 'LIKE', '%' . $key . '%');
+                return $q->where('id', '%' . $key . '%')
+                    ->orWhere('course_id', '%' . $key . '%')
+                    ->orWhere('module_id', '%' . $key . '%')
+                    ->orWhere('class_id', '%' . $key . '%')
+                    ->orWhere('user_id', '%' . $key . '%')
+                    ->orWhere('quiz_id', 'LIKE', '%' . $key . '%')
+                    ->orWhere('exam_id', 'LIKE', '%' . $key . '%');
+       
             });
         }
 
@@ -50,7 +50,7 @@ class CourseModuleClassQuizesController extends Controller
         if (request()->has('select_all') && request()->select_all) {
             $select = "*";
         }
-        $data = CourseCategory::where('id', $id)
+        $data = CourseModuleTaskCompleteByUsers::where('id', $id)
             ->select($select)
             ->first();
         if ($data) {
@@ -67,10 +67,12 @@ class CourseModuleClassQuizesController extends Controller
     public function store()
     {
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'module_id' => ['required'],
+            'class_id' => ['required'],
+            'user_id' => ['required'],
+            'quiz_id' => ['required'],
+            'exam_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -80,11 +82,13 @@ class CourseModuleClassQuizesController extends Controller
             ], 422);
         }
 
-        $data = new ContactMessage();
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data = new CourseModuleTaskCompleteByUsers();
+        $data->course_id = request()->course_id;
+        $data->module_id = request()->module_id;
+        $data->class_id = request()->class_id;
+        $data->user_id = request()->user_id;
+        $data->quiz_id = request()->quiz_id;
+        $data->exam_id = request()->exam_id;
         $data->save();
 
         return response()->json($data, 200);
@@ -93,10 +97,12 @@ class CourseModuleClassQuizesController extends Controller
     public function canvas_store()
     {
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'module_id' => ['required'],
+            'class_id' => ['required'],
+            'user_id' => ['required'],
+            'quiz_id' => ['required'],
+            'exam_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -106,11 +112,13 @@ class CourseModuleClassQuizesController extends Controller
             ], 422);
         }
 
-        $data = new ContactMessage();
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data = new CourseModuleTaskCompleteByUsers();
+        $data->course_id = request()->course_id;
+        $data->module_id = request()->module_id;
+        $data->class_id = request()->class_id;
+        $data->user_id = request()->user_id;
+        $data->quiz_id = request()->quiz_id;
+        $data->exam_id = request()->exam_id;
         $data->save();
 
         return response()->json($data, 200);
@@ -118,7 +126,7 @@ class CourseModuleClassQuizesController extends Controller
 
     public function update()
     {
-        $data = ContactMessage::find(request()->id);
+        $data = CourseModuleTaskCompleteByUsers::find(request()->id);
         if(!$data){
             return response()->json([
                 'err_message' => 'validation error',
@@ -127,10 +135,12 @@ class CourseModuleClassQuizesController extends Controller
         }
 
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'module_id' => ['required'],
+            'class_id' => ['required'],
+            'user_id' => ['required'],
+            'quiz_id' => ['required'],
+            'exam_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -140,10 +150,12 @@ class CourseModuleClassQuizesController extends Controller
             ], 422);
         }
 
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data->course_id = request()->course_id;
+        $data->module_id = request()->module_id;
+        $data->class_id = request()->class_id;
+        $data->user_id = request()->user_id;
+        $data->quiz_id = request()->quiz_id;
+        $data->exam_id = request()->exam_id;
         $data->save();
 
         return response()->json($data, 200);
@@ -151,7 +163,7 @@ class CourseModuleClassQuizesController extends Controller
 
     public function canvas_update()
     {
-        $data = ContactMessage::find(request()->id);
+        $data = CourseModuleTaskCompleteByUsers::find(request()->id);
         if(!$data){
             return response()->json([
                 'err_message' => 'validation error',
@@ -160,10 +172,12 @@ class CourseModuleClassQuizesController extends Controller
         }
 
         $validator = Validator::make(request()->all(), [
-            'full_name' => ['required'],
-            'email' => ['required'],
-            'subject' => ['required'],
-            'message' => ['required'],
+            'course_id' => ['required'],
+            'module_id' => ['required'],
+            'class_id' => ['required'],
+            'user_id' => ['required'],
+            'quiz_id' => ['required'],
+            'exam_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -173,10 +187,12 @@ class CourseModuleClassQuizesController extends Controller
             ], 422);
         }
 
-        $data->full_name = request()->full_name;
-        $data->email = request()->email;
-        $data->subject = request()->subject;
-        $data->message = request()->message;
+        $data->course_id = request()->course_id;
+        $data->module_id = request()->module_id;
+        $data->class_id = request()->class_id;
+        $data->user_id = request()->user_id;
+        $data->quiz_id = request()->quiz_id;
+        $data->exam_id = request()->exam_id;
         $data->save();
 
         return response()->json($data, 200);
@@ -185,7 +201,7 @@ class CourseModuleClassQuizesController extends Controller
     public function soft_delete()
     {
         $validator = Validator::make(request()->all(), [
-            'id' => ['required','exists:contact_messages,id'],
+            'id' => ['required','exists:course_module_task_complete_by_users,id'],
         ]);
 
         if ($validator->fails()) {
@@ -195,8 +211,8 @@ class CourseModuleClassQuizesController extends Controller
             ], 422);
         }
 
-        $data = ContactMessage::find(request()->id);
-        $data->status = 0;
+        $data = CourseModuleTaskCompleteByUsers::find(request()->id);
+        $data->status = 'inactive';
         $data->save();
 
         return response()->json([
@@ -206,6 +222,23 @@ class CourseModuleClassQuizesController extends Controller
 
     public function destroy()
     {
+        $validator = Validator::make(request()->all(), [
+            'id' => ['required','exists:course_module_task_complete_by_users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $data = CourseModuleTaskCompleteByUsers::find(request()->id);
+        $data->delete();
+
+        return response()->json([
+                'result' => 'deleted',
+        ], 200);
     }
 
     public function restore()
@@ -221,7 +254,7 @@ class CourseModuleClassQuizesController extends Controller
             ], 422);
         }
 
-        $data = ContactMessage::find(request()->id);
+        $data = CourseModuleTaskCompleteByUsers::find(request()->id);
         $data->status = 1;
         $data->save();
 
@@ -247,10 +280,10 @@ class CourseModuleClassQuizesController extends Controller
             $item['created_at'] = $item['created_at'] ? Carbon::parse($item['created_at']): Carbon::now()->toDateTimeString();
             $item['updated_at'] = $item['updated_at'] ? Carbon::parse($item['updated_at']): Carbon::now()->toDateTimeString();
             $item = (object) $item;
-            $check = ContactMessage::where('id',$item->id)->first();
+            $check = CourseModuleTaskCompleteByUsers::where('id',$item->id)->first();
             if(!$check){
                 try {
-                    ContactMessage::create((array) $item);
+                    CourseModuleTaskCompleteByUsers::create((array) $item);
                 } catch (\Throwable $th) {
                     return response()->json([
                         'err_message' => 'validation error',
