@@ -291,18 +291,18 @@ Route::group(
                 });
 
                 Route::group(['prefix' => 'course-modules-class-routines'], function () {
-                    Route::get('/all', 'Course\CourseModuleClassRoutines@all');
-                    Route::post('/store', 'Course\CourseModuleClassRoutines@store');
-                    Route::post('/canvas-store', 'Course\CourseModuleClassRoutines@canvas_store');
-                    Route::post('/update', 'Course\CourseModuleClassRoutines@update');
-                    Route::post('/canvas-update', 'Course\CourseModuleClassRoutines@canvas_update');
-                    Route::post('/soft-delete', 'Course\CourseModuleClassRoutines@soft_delete');
-                    Route::post('/destroy', 'Course\CourseModuleClassRoutines@destroy');
-                    Route::post('/restore', 'Course\CourseModuleClassRoutines@restore');
-                    Route::post('/bulk-import', 'Course\CourseModuleClassRoutines@bulk_import');
-                    Route::get('/{id}', 'Course\CourseModuleClassRoutines@show');
+                    Route::get('/all', 'Course\CourseModuleClassRoutinesController@all');
+                    Route::post('/store', 'Course\CourseModuleClassRoutinesController@store');
+                    Route::post('/canvas-store', 'Course\CourseModuleClassRoutinesController@canvas_store');
+                    Route::post('/update', 'Course\CourseModuleClassRoutinesController@update');
+                    Route::post('/canvas-update', 'Course\CourseModuleClassRoutinesController@canvas_update');
+                    Route::post('/soft-delete', 'Course\CourseModuleClassRoutinesController@soft_delete');
+                    Route::post('/destroy', 'Course\CourseModuleClassRoutinesController@destroy');
+                    Route::post('/restore', 'Course\CourseModuleClassRoutinesController@restore');
+                    Route::post('/bulk-import', 'Course\CourseModuleClassRoutinesController@bulk_import');
+                    Route::get('/{id}', 'Course\CourseModuleClassRoutinesController@show');
                 });
-
+ 
                 Route::group(['prefix' => 'course-modules-class'], function () {
                     Route::get('/all', 'Course\CourseModuleClassController@all');
                     Route::post('/store', 'Course\CourseModuleClassController@store');
