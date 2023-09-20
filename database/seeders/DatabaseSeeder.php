@@ -12,18 +12,20 @@ use Database\Seeders\Course\CourseForWhomsSeeder;
 use Database\Seeders\Course\CourseInstructorsSeeder;
 use Database\Seeders\Course\CoursejobPositionSeeder;
 use Database\Seeders\Course\CourseJobWorkSeeder;
-use Database\Seeders\Course\CourseModulClassExamsSeeder;
-use Database\Seeders\Course\CourseModulClassSeeder;
+use Database\Seeders\Course\CourseModuleClassExamsSeeder;
+use Database\Seeders\Course\CourseModuleClassSeeder;
 use Database\Seeders\Course\CourseModulesAtAGlancesSeeder;
 use Database\Seeders\Course\CourseModulesSeeder;
-use Database\Seeders\Course\CourseModulTaskCompleteByUsersSeeder;
+use Database\Seeders\Course\CourseModuleTaskCompleteByUsersSeeder;
 use Database\Seeders\Course\CourseSeeder;
 use Database\Seeders\Course\CourseWhatYouWillGetSeeder;
 use Database\Seeders\Course\CourseWhyYouLearnFromUsSeeder;
 use Database\Seeders\Course\CourseYouWillLearnsSeeder;
-use Database\Seeders\Course\CourseModulClassQuizesSeeder;
-use Database\Seeders\Course\CourseModulClassResoursesSeeder;
-use Database\Seeders\Course\CourseModulClassRoutinesSeeder;
+use Database\Seeders\Course\CourseModuleClassQuizesSeeder;
+use Database\Seeders\Course\CourseModuleClassResoursesSeeder;
+use Database\Seeders\Course\CourseModuleClassRoutinesSeeder;
+use Database\Seeders\User\UserSocialLinksSeeder;
+use Database\Seeders\User\UserContactNumberSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,31 +40,36 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
-            ExtraUserSeeder::class,
+            // ExtraUserSeeder::class,
             ContactMessageSeeder::class,
+            UserContactNumberSeeder::class,
+            UserSocialLinksSeeder::class,
 
-
-            CourseBatchSeeder::class,
             CourseCategorySeeder::class,
+            CourseSeeder::class,
+            CourseInstructorsSeeder::class,
             CourseCourseCategorySeeder::class,
+            CourseBatchSeeder::class,
+            
             CourseEssentialRequirementsSeeder::class,
             CourseFaqsSeeder::class,
             CourseForWhomsSeeder::class,
-            CourseInstructorsSeeder::class,
             CoursejobPositionSeeder::class,
             CourseJobWorkSeeder::class,
-            CourseModulClassExamsSeeder::class,
-            CourseModulClassQuizesSeeder::class,
-            CourseModulClassResoursesSeeder::class,
-            CourseModulClassRoutinesSeeder::class,
-            CourseModulClassSeeder::class,
-            CourseModulesAtAGlancesSeeder::class,
-            CourseModulesSeeder::class,
-            CourseModulTaskCompleteByUsersSeeder::class,
-            CourseSeeder::class,
             CourseWhatYouWillGetSeeder::class,
             CourseWhyYouLearnFromUsSeeder::class,
             CourseYouWillLearnsSeeder::class,
+
+            CourseModulesSeeder::class,
+            CourseModuleClassExamsSeeder::class,
+            CourseModuleClassQuizesSeeder::class,
+            CourseModuleClassResoursesSeeder::class,
+            CourseModuleClassRoutinesSeeder::class,
+            CourseModuleClassSeeder::class,
+            CourseModulesAtAGlancesSeeder::class,
+            CourseModuleTaskCompleteByUsersSeeder::class,
+
+            
 
         ]);
 

@@ -19,8 +19,13 @@ class CourseWhatYouWillGetSeeder extends Seeder
             'course_id' => 1,
             'title' => 'ইন্টার্নশিপ সুযোগ',
         ]);
-
-       ;
-
+        CourseWhatYouWillGets::create([
+            'course_id' => 1,
+            'title' => '৫০ টি লাইভ ক্লাস',
+        ]);
+        CourseWhatYouWillGets::create([
+            'course_id' => 1,
+            'title' => 'আজীবন লাইভ সাপোর্ট',
+        ]);
     }
 }

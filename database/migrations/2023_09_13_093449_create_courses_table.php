@@ -17,10 +17,12 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string("title", 200)->nullable();
             $table->string("image", 200)->nullable();
-            $table->string("intro_vedio", 200)->nullable();
+            $table->string("intro_video", 200)->nullable();
             $table->text("what_is_this_course")->nullable();
             $table->text("why_is_this_course")->nullable();
             $table->tinyInteger("creator")->unsigned()->nullable();
+
+            $table->enum('status',['active','inactive'])->default('active');
             $table->string("slug", 50)->nullable();
             $table->timestamps();
         });
