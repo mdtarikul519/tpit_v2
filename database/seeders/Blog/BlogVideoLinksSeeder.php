@@ -16,9 +16,8 @@ class BlogVideoLinksSeeder extends Seeder
     {
         BlogVideoLinks::truncate();
         BlogVideoLinks::create([
-               'blog_id'=>'',
-               'video_link'=>'',
-               'blogs_creator'=>'',
+               'blog_id'=>'1',
+               'video_link'=>'https://www.youtube.com/watch?v=nwDoyfxg9cM',
               
         ]);
     }

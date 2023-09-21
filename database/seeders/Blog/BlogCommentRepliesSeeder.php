@@ -4,6 +4,7 @@ namespace Database\Seeders\Blog;
 
 use App\Models\Blog\BlogCommentReplies;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BlogCommentRepliesSeeder extends Seeder
 {
@@ -16,7 +17,13 @@ class BlogCommentRepliesSeeder extends Seeder
     {
         BlogCommentReplies::truncate();
         BlogCommentReplies::create([
-               'comment'=>'',
+               'comment'=>'thank you for comment',
+        ]);
+
+        DB::table('blog_comment_blog_comment_repliy')->truncate();
+        DB::table('blog_comment_blog_comment_repliy')->insert([
+            'blog_comment_id' => 1,
+            'blog_comment_repliy_id' => 1,
         ]);
     }
 }

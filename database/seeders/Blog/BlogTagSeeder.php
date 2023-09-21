@@ -4,6 +4,7 @@ namespace Database\Seeders\Blog;
 
 use App\Models\Blog\BlogTags;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BlogTagSeeder extends Seeder
 {
@@ -16,8 +17,19 @@ class BlogTagSeeder extends Seeder
     {
         BlogTags::truncate();
         BlogTags::create([
-               'title'=>'',
+               'title'=>'Master Python',
                
-        ]);
+            ]);
+
+            BlogTags::create([
+                'title'=>'Become a Programmer',
+                
+             ]);
+
+             DB::table('blog_blog_tag')->truncate();
+             DB::table('blog_blog_tag')->insert([
+                 'blog_id' => 1,
+                 'blog_tag_id' => 1,
+             ]);
     }
 }

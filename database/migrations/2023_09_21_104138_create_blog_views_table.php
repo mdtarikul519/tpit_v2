@@ -16,9 +16,7 @@ class CreateBlogViewsTable extends Migration
         Schema::create('blog_views', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('blog_id')->nullable();
-            $table->bigInteger('blogs_creator')->nullable();
             $table->string('device_ip', 50)->nullable();
-            $table->tinyInteger('status')->nullable();
 
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();

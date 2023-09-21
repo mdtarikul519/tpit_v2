@@ -16,6 +16,7 @@ class CreateBlogWritersTable extends Migration
         Schema::create('blog_writers', function (Blueprint $table) {
             $table->id();
             $table->string('title', 150)->nullable();
+            $table->string('designation', 150)->nullable();
             $table->longText('description')->nullable();
             $table->string('image', 100)->nullable();
 

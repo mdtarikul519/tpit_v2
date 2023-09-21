@@ -16,7 +16,6 @@ class CreateBlogVideoLinksTable extends Migration
         Schema::create('blog_video_links', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('blog_id')->nullable();
-            $table->bigInteger('blogs_creator')->nullable();
             $table->string('video_link', 50)->nullable();
 
             $table->tinyInteger("creator")->unsigned()->nullable();

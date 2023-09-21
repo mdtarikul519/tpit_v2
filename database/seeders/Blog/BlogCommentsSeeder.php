@@ -18,10 +18,9 @@ class BlogCommentsSeeder extends Seeder
       
         BlogComments::truncate();
         BlogComments::create([
-               'blog_id'=>'',
-               'user_id'=>'',
-               'comment'=>'',
-               'blogs_creator'=>'',
+               'blog_id'=>'1',
+               'user_id'=>'1',
+               'comment'=>'this is a good post',
         ]);
     }
 }

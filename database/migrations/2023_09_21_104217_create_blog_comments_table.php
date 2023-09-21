@@ -17,7 +17,6 @@ class CreateBlogCommentsTable extends Migration
             $table->id();
             $table->bigInteger('blog_id')->nullable();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('blogs_creator')->nullable();
             $table->text('comment')->nullable();
 
             $table->tinyInteger("creator")->unsigned()->nullable();

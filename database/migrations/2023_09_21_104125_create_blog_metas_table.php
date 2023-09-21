@@ -16,7 +16,6 @@ class CreateBlogMetasTable extends Migration
         Schema::create('blog_metas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('blog_id')->nullable();
-            $table->bigInteger('blogs_creator')->nullable();
             $table->string('title', 150)->nullable();
             $table->longText('description')->nullable();
             $table->string('keywords', 150)->nullable();

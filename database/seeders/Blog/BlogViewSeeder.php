@@ -16,9 +16,8 @@ class BlogViewSeeder extends Seeder
     {
         BlogViews::truncate();
         BlogViews::create([
-               'blog_id'=>'',
-               'device_ip'=>'',
-               'blogs_creator'=>'',
+               'blog_id'=>'1',
+               'device_ip'=>'123097',
               
         ]);
     }

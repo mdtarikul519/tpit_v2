@@ -16,7 +16,6 @@ class CreateBlogTagsTable extends Migration
         Schema::create('blog_tags', function (Blueprint $table) {
             $table->id();
             $table->string('title', 150)->nullable();
-            $table->tinyInteger('status')->nullable();
 
             $table->tinyInteger("creator")->unsigned()->nullable();
             $table->string("slug", 50)->nullable();
