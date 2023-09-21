@@ -3,6 +3,15 @@
 namespace Database\Seeders;
 
 use App\Models\ContactMessage;
+use Database\Seeders\Blog\BlogCategorySeeder;
+use Database\Seeders\Blog\BlogCommentRepliesSeeder;
+use Database\Seeders\Blog\BlogCommentsSeeder;
+use Database\Seeders\Blog\BlogMetaSeeder;
+use Database\Seeders\Blog\BlogSeeder;
+use Database\Seeders\Blog\BlogTagSeeder;
+use Database\Seeders\Blog\BlogVideoLinksSeeder;
+use Database\Seeders\Blog\BlogViewSeeder;
+use Database\Seeders\Blog\BlogWriterSeeder;
 use Database\Seeders\Course\CourseBatchSeeder;
 use Database\Seeders\Course\CourseCategorySeeder;
 use Database\Seeders\Course\CourseCourseCategorySeeder;
@@ -68,6 +77,16 @@ class DatabaseSeeder extends Seeder
             CourseModuleClassSeeder::class,
             CourseModulesAtAGlancesSeeder::class,
             CourseModuleTaskCompleteByUsersSeeder::class,
+
+            BlogCategorySeeder::class,
+            BlogCommentRepliesSeeder::class,
+            BlogCommentsSeeder::class,
+            BlogMetaSeeder::class,
+            BlogSeeder::class,
+            BlogTagSeeder::class,
+            BlogVideoLinksSeeder::class,
+            BlogViewSeeder::class,
+            BlogWriterSeeder  ::class,
 
             
 

@@ -342,7 +342,89 @@ Route::group(
                     Route::get('/{id}', 'Course\CourseModuleTaskCompleteByUsersController@show');
                 });
 
+
+                
+
             });
+
+            Route::group(['prefix' => 'blog'], function () {
+                Route::get('/all', 'Blog\BlogController@all');
+                Route::post('/store', 'Blog\BlogController@store');
+                Route::post('/canvas-store', 'Blog\BlogController@canvas_store');
+                Route::post('/update', 'Blog\BlogController@update');
+                Route::post('/canvas-update', 'Blog\BlogController@canvas_update');
+                Route::post('/soft-delete', 'Blog\BlogController@soft_delete');
+                Route::post('/destroy', 'Blog\BlogController@destroy');
+                Route::post('/restore', 'Blog\BlogController@restore');
+                Route::post('/bulk-import', 'Blog\BlogController@bulk_import');
+                Route::get('/{id}', 'Blog\BlogController@show');
+
+                Route::group(['prefix' => 'category'], function () {
+                    Route::get('/all', 'Blog\BlogCategoriesController@all');
+                    Route::post('/store', 'Blog\BlogCategoriesController@store');
+                    Route::post('/canvas-store', 'Blog\BlogCategoriesController@canvas_store');
+                    Route::post('/update', 'Blog\BlogCategoriesController@update');
+                    Route::post('/canvas-update', 'Blog\BlogCategoriesController@canvas_update');
+                    Route::post('/soft-delete', 'Blog\BlogCategoriesController@soft_delete');
+                    Route::post('/destroy', 'Blog\BlogCategoriesController@destroy');
+                    Route::post('/restore', 'Blog\BlogCategoriesController@restore');
+                    Route::post('/bulk-import', 'Blog\BlogCategoriesController@bulk_import');
+                    Route::get('/{id}', 'Blog\BlogCategoriesController@show');
+        
+                });
+                Route::group(['prefix' => 'blog-meta'], function () {
+                    Route::get('/all', 'Blog\BlogMetaController@all');
+                    Route::post('/store', 'Blog\BlogMetaController@store');
+                    Route::post('/canvas-store', 'Blog\BlogMetaController@canvas_store');
+                    Route::post('/update', 'Blog\BlogMetaController@update');
+                    Route::post('/canvas-update', 'Blog\BlogMetaController@canvas_update');
+                    Route::post('/soft-delete', 'Blog\BlogMetaController@soft_delete');
+                    Route::post('/destroy', 'Blog\BlogMetaController@destroy');
+                    Route::post('/restore', 'Blog\BlogMetaController@restore');
+                    Route::post('/bulk-import', 'Blog\BlogMetaController@bulk_import');
+                    Route::get('/{id}', 'Blog\BlogMetaController@show');
+                });
+
+                Route::group(['prefix' => 'blog-comment-replies'], function () {
+                    Route::get('/all', 'Blog\BlogCommentRepliesController@all');
+                    Route::post('/store', 'Blog\BlogCommentRepliesController@store');
+                    Route::post('/canvas-store', 'Blog\BlogCommentRepliesController@canvas_store');
+                    Route::post('/update', 'Blog\BlogCommentRepliesController@update');
+                    Route::post('/canvas-update', 'Blog\BlogCommentRepliesController@canvas_update');
+                    Route::post('/soft-delete', 'Blog\BlogCommentRepliesController@soft_delete');
+                    Route::post('/destroy', 'Blog\BlogCommentRepliesController@destroy');
+                    Route::post('/restore', 'Blog\BlogCommentRepliesController@restore');
+                    Route::post('/bulk-import', 'Blog\BlogCommentRepliesController@bulk_import');
+                    Route::get('/{id}', 'Blog\BlogCommentRepliesController@show');
+                });
+
+                Route::group(['prefix' => 'blog-comment'], function () {
+                    Route::get('/all', 'Blog\BlogCommentsController@all');
+                    Route::post('/store', 'Blog\BlogCommentsController@store');
+                    Route::post('/canvas-store', 'Blog\BlogCommentsController@canvas_store');
+                    Route::post('/update', 'Blog\BlogCommentsController@update');
+                    Route::post('/canvas-update', 'Blog\BlogCommentsController@canvas_update');
+                    Route::post('/soft-delete', 'Blog\BlogCommentsController@soft_delete');
+                    Route::post('/destroy', 'Blog\BlogCommentsController@destroy');
+                    Route::post('/restore', 'Blog\BlogCommentsController@restore');
+                    Route::post('/bulk-import', 'Blog\BlogCommentsController@bulk_import');
+                    Route::get('/{id}', 'Blog\BlogCommentsController@show');
+                });
+
+                Route::group(['prefix' => 'blog-tags'], function () {
+                    Route::get('/all', 'Blog\BlogCommentsController@all');
+                    Route::post('/store', 'Blog\BlogCommentsController@store');
+                    Route::post('/canvas-store', 'Blog\BlogCommentsController@canvas_store');
+                    Route::post('/update', 'Blog\BlogCommentsController@update');
+                    Route::post('/canvas-update', 'Blog\BlogCommentsController@canvas_update');
+                    Route::post('/soft-delete', 'Blog\BlogCommentsController@soft_delete');
+                    Route::post('/destroy', 'Blog\BlogCommentsController@destroy');
+                    Route::post('/restore', 'Blog\BlogCommentsController@restore');
+                    Route::post('/bulk-import', 'Blog\BlogCommentsController@bulk_import');
+                    Route::get('/{id}', 'Blog\BlogCommentsController@show');
+                });
+            });
+
         });
     }
 );
