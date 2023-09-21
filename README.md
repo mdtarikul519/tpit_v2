@@ -24,12 +24,10 @@
 > <br>
 > <br>
 
-<br>
-
 > <br>
-> <img src="https://github.com/Sajid-al-islam.png" alt="alt text" width="50" height="50" > <br> 
-> <a href="https://github.com/Sajid-al-islam">Muhammad Shefat Ullah Masum</a> <br>
-> Software Engineer ( Tech Park IT )
+> <img src="https://github.com/mdtarikul519.png" alt="alt text" width="50" height="50" > <br> 
+> <a href="https://github.com/mdtarikul519">Muhammad Tarek Shuvo</a> <br>
+> Web Developer ( Tech Park IT )
 > <br>
 > <br>
 
