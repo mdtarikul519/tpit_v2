@@ -37,42 +37,66 @@
 
                     <!-- date_line_area start -->
                     @foreach ($seminars as $item)
-                    <div class="date_line_area date_line_area_copy">
+                        <div class="date_line_area date_line_area_copy">
 
-                        @php
-                        $date1 = \Carbon\Carbon::now(); 
-                        $date2 = \Carbon\Carbon::parse($item->date_time);
+                            @php
+                                $date1 = \Carbon\Carbon::now();
+                                $date2 = \Carbon\Carbon::parse($item->date_time);
+                                
+                                $diff = $date1->diffInDays($date2);
+                                
+                            @endphp
 
-                        $diff = $date1->diffInDays($date2);
+                            <div class="date date_copy">
+                                <span class="date_number date_number_copy">{{ $diff }}</span>
+                                <span class="date_text">দিন বাকী</span>
+                            </div>
 
-                       @endphp
+                            <div class="data_science data_science_copy">
+                                <span
+                                    class="data_science_text_title data_science_text_title_copy">{{ $item->title }}</span>
+                                <div class="data_science_text_sub_title data_science_text_sub_title_copy">
+                                    <!-- অনলাইন | ১৯ ডিসেম্বর ২৩ সোমবার, 09:00 pm -->
+                                    <span> অনলাইন</span>
+                                    <span class="space_space"> |</span>
+                                    <span>{{ \Carbon\Carbon::parse($item->date_time)->format('d F Y h:m A') }}</span>
 
-                        <div class="date date_copy">
-                            <span class="date_number date_number_copy">{{$diff}}</span>
-                            <span class="date_text">দিন বাকী</span>
+                                </div>
+                            </div>
+
+                            <div class="join_button join_button_copy">
+                                <button class="button_all button_all_copy" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">
+                                   জয়েন
+                                </button>
+
+                            
+                          </div>
                         </div>
-
-                        <div class="data_science data_science_copy">
-                            <span class="data_science_text_title data_science_text_title_copy">{{$item->title}}</span>
-                            <div class="data_science_text_sub_title data_science_text_sub_title_copy">
-                                <!-- অনলাইন | ১৯ ডিসেম্বর ২৩ সোমবার, 09:00 pm -->
-                                <span> অনলাইন</span>
-                                <span class="space_space"> |</span>
-                                <span>{{\Carbon\Carbon::parse($item->date_time)->format('d F Y h:m A')}}</span>
-
+                   <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="join_button join_button_copy">
-                            <button class="button_all button_all_copy">
-                                <span class="btn_text"> জয়েন</span>
-                            </button>
-                        </div>
-
                     </div>
-                    @endforeach 
-                    
-                    <!--  date_line_area end -->             
+                  @endforeach
+
+                    <!--  date_line_area end -->
 
                 </div>
                 <!-- </div> -->
@@ -81,7 +105,8 @@
                 <!-- </div> -->
             </div>
         </div>
+
+
     </section>
     <!-- free_seminar_area_end -->
-
 @endsection

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/plugins/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/icon/fontawesome-free-6.2.0-web/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('js/plugins/localforage.min.js') }}"></script>
     <script src="{{ asset('js/plugins/turbolinks.min.js') }}"></script>
     <script src="{{ asset('js/plugins/sweetalert.js') }}"></script>
